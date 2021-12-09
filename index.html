@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="charts">
+ 
+<head>
+  <meta charset="utf-8" />
+  <title>Pie Chart &amp; Line Chart using AngularJS and D3</title>
+  <link data-require="bootstrap-css@*" data-semver="3.2.0" rel="stylesheet" href="./Project/bootstrap.min.css" /> 
+  
+  <script data-require="angular.js@1.0.x" src="./Project/angular.min.js" data-semver="1.0.8"></script>
+  
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <script src='./app.js'></script>
+
+</head>
+ 
+<body ng-controller="MainCtrl">
+  <div class="row">
+    <div class='col-xs-12'>
+      <h4 class="title">Block Watch Graph</h4> <br></br>
+    </div>
+    <div class='col-xs-12'>
+      <div class="container">
+        <div class="card shadow mb-1 bg-white rounded" >
+          <div class="card-body">
+            
+            <div class="row">
+              <div class="col-sm-7">
+                <button type="button" class="btn btn-outline-dark bt-mr" ng-click ="updateData({data: 'Requests'})">Requests</button>
+                <button type="button" class="btn btn-outline-dark bt-mrl" ng-click ="updateData({data: 'Latency'})">Latency</button>
+                <button type="button" class="btn btn-outline-dark bt-mrl" ng-click ="updateData({data: 'Trafic'})">Trafic</button>
+                <button type="button" class="btn btn-outline-dark bt-ml" ng-click ="updateData({data: 'Users'})">Users</button>
+              </div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-link bt-mrl" ng-click ="updateData({graph: 'Line'})">Line</button>
+                <button type="button" class="btn btn-link bt-mrl" ng-click ="updateData({graph: 'Bar'})">Bar</button>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-link bt-mrl" ng-click ="updateData({time: 'M1'})">M1</button>
+                <button type="button" class="btn btn-link bt-mrl" ng-click ="updateData({time: 'H1'})">H1</button>
+                <button type="button" class="btn btn-link bt-ml" ng-click ="updateData({time: 'D'})">D</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-lg-12" ng-switch="objdata.graph">
+                <div ng-switch-when="Bar">
+                  <div bar-chart="" style="width:100%;height:460px;" data="data"></div>
+                </div>
+                <div ng-switch-when="Pie">
+                  <div pie-chart="" style="width:100%;height:460px;" data="data"></div>
+                </div>
+                <div ng-switch-when="Line">
+                  <div line-chart="" style="width:100%;height:460px;" data="data"></div>
+                </div>
+                <div ng-switch-default>
+                  <div line-chart="" style="width:100%;height:460px;" data="data"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+ 
+</html>
